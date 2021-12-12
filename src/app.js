@@ -1,5 +1,6 @@
 const button = document.querySelector(".btn");
 const tableContent = document.getElementById("dynamic-table");
+const generatedNumbers = document.querySelector(".generated-numbers");
 
 const randomNumbers = [];
 const evenNumbers = [];
@@ -54,6 +55,10 @@ const createRows = () => {
   }
 };
 
+const showGeneratedNumbers = () => {
+  generatedNumbers.innerHTML = JSON.stringify(randomNumbers);
+};
+
 const reset = () => {
   randomNumbers.length = 0;
   evenNumbers.length = 0;
@@ -64,6 +69,7 @@ const reset = () => {
 const init = () => {
   if (tableContent !== null) reset();
   segregateNumbersToArrays();
+  showGeneratedNumbers();
   createHeadings();
   createRows();
 };
