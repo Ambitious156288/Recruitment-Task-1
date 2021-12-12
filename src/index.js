@@ -20,7 +20,6 @@ const sortArrayAscending = (a, b) => a - b;
 
 const segregateNumbersToArrays = () => {
   generateRandomNumbers();
-
   evenNumbers.sort(sortArrayAscending);
   oddNumbers.sort(sortArrayAscending);
 };
@@ -37,8 +36,6 @@ const createHeadings = () => {
   }, tableHeadings);
 
   tableContent.append(completedTableHeadings);
-
-  // if headings exists, don't create it again
 };
 
 const createRows = () => {
@@ -57,11 +54,18 @@ const createRows = () => {
   }
 };
 
-const createDynamicTable = () => {
-  segregateNumbersToArrays();
+const reset = () => {
+  randomNumbers.length = 0;
+  evenNumbers.length = 0;
+  oddNumbers.length = 0;
+  tableContent.innerHTML = "";
+};
 
+const init = () => {
+  if (tableContent !== null) reset();
+  segregateNumbersToArrays();
   createHeadings();
   createRows();
 };
 
-button.addEventListener("click", createDynamicTable);
+button.addEventListener("click", init);
