@@ -25,7 +25,7 @@ const segregateNumbersToArrays = () => {
   oddNumbers.sort(sortArrayAscending);
 };
 
-createHeadings = () => {
+const createHeadings = () => {
   const tableHeadingsTitles = ["Even", "Odd"];
   const tableHeadings = document.createElement("tr");
 
@@ -41,14 +41,24 @@ createHeadings = () => {
   // if headings exists, don't create it again
 };
 
-createRows = () => {};
+const createRows = () => {
+  const greaterValue = Math.max(evenNumbers.length, oddNumbers.length);
+
+  for (let i = 0; i < greaterValue; i++) {
+    const tableRows = document.createElement("tr");
+    const row1 = document.createElement("td");
+    const row2 = document.createElement("td");
+
+    row1.innerHTML = oddNumbers[i] ? oddNumbers[i] : "-";
+    row2.innerHTML = evenNumbers[i] ? evenNumbers[i] : "-";
+
+    tableRows.append(row1, row2);
+    tableContent.append(tableRows);
+  }
+};
 
 const createDynamicTable = () => {
   segregateNumbersToArrays();
-
-  console.log(randomNumbers);
-  console.log(evenNumbers);
-  console.log(oddNumbers);
 
   createHeadings();
   createRows();
